@@ -55,12 +55,12 @@ export default function Year(props) {
         <TouchableOpacity
           onPress={onSelect}>
           <Text style={[styles.yearText, textStyle]}>
-            { year }
+            { year+543 }
           </Text>
         </TouchableOpacity>
         :
         <Text style={[textStyle, styles.disabledText]}>
-          { year }
+          { year+543 }
         </Text>
       }
     </View>
