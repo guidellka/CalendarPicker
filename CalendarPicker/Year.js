@@ -17,6 +17,7 @@ export default function Year(props) {
     textStyle,
     minDate,
     maxDate,
+    localeDisplayYear
   } = props;
 
   let yearOutOfRange;
@@ -55,12 +56,12 @@ export default function Year(props) {
         <TouchableOpacity
           onPress={onSelect}>
           <Text style={[styles.yearText, textStyle]}>
-            { year+543 }
+            { year+localeDisplayYear }
           </Text>
         </TouchableOpacity>
         :
         <Text style={[textStyle, styles.disabledText]}>
-          { year+543 }
+          { year+localeDisplayYear }
         </Text>
       }
     </View>

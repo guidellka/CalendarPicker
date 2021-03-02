@@ -24,6 +24,7 @@ export default class MonthSelector extends Component {
       minDate,
       maxDate,
       onSelectMonth,
+      localeDisplayYear
     } = this.props;
 
     return (
@@ -31,7 +32,7 @@ export default class MonthSelector extends Component {
         <MonthsHeader
           styles={styles}
           textStyle={textStyle}
-          title={title + (currentYear+543)}
+          title={title + (currentYear+localeDisplayYear)}
           headingLevel={headingLevel}
         />
         <MonthsGridView

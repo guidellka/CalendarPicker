@@ -12,11 +12,16 @@ import moment from 'moment';
 
 export default class CalendarPicker extends Component {
   constructor(props) {
+    let plusYear = 0
+    if (props.locale === 'th') {
+      plusYear = 543
+    }
     super(props);
     this.numMonthsScroll = 60; // 5 years
     this.state = {
       currentMonth: null,
       currentYear: null,
+      displayYear: plusYear,
       currentView: 'days',
       selectedStartDate: props.selectedStartDate && moment(props.selectedStartDate),
       selectedEndDate: props.selectedEndDate && moment(props.selectedEndDate),
@@ -40,6 +45,7 @@ export default class CalendarPicker extends Component {
       console.log('onDateChange() not provided');
     },
     enableDateChange: true,
+    locale: 'en',
     headingLevel: 1,
     sundayColor: '#FFFFFF',
     customDatesStyles: [],
@@ -158,7 +164,7 @@ export default class CalendarPicker extends Component {
   updateMonthYear = (initialDate = this.props.initialDate, updateState) => {
     const newState = {
       currentMonth: parseInt(moment(initialDate).month()),
-      currentYear: parseInt(moment(initialDate).year())
+      currentYear: parseInt(moment(initialDate).year()),
     };
     if (updateState) {
       this.setState(newState);
@@ -230,6 +236,7 @@ export default class CalendarPicker extends Component {
       allowRangeSelection,
       allowBackwardRangeSelect,
       enableDateChange,
+      locale,
       onDateChange,
     } = this.props;
 
@@ -376,6 +383,7 @@ export default class CalendarPicker extends Component {
       selectedStartDate: state.selectedStartDate,
       selectedEndDate: state.selectedEndDate,
       enableDateChange: this.props.enableDateChange,
+      locale: this.props.locale,
       startFromMonday: this.props.startFromMonday,
       allowRangeSelection: this.props.allowRangeSelection,
       allowBackwardRangeSelect: this.props.allowBackwardRangeSelect,
@@ -455,6 +463,7 @@ export default class CalendarPicker extends Component {
       monthsList,
       renderMonthParams,
       initialScrollerIndex,
+      displayYear
     } = this.state;
 
     const {
@@ -498,6 +507,7 @@ export default class CalendarPicker extends Component {
           maxDate={maxDate}
           onSelectMonth={this.handleOnSelectMonthYear}
           headingLevel={headingLevel}
+          localeDisplayYear={displayYear}
         />
       );
       break;
@@ -521,6 +531,7 @@ export default class CalendarPicker extends Component {
           nextTitleStyle={nextTitleStyle}
           onSelectYear={this.handleOnSelectMonthYear}
           headingLevel={headingLevel}
+          localeDisplayYear={displayYear}
         />
       );
       break;
@@ -552,6 +563,7 @@ export default class CalendarPicker extends Component {
             headingLevel={headingLevel}
             monthYearHeaderWrapperStyle={monthYearHeaderWrapperStyle}
             headerWrapperStyle={headerWrapperStyle}
+            localeDisplayYear={displayYear}
           />
           <Weekdays
             styles={styles}
