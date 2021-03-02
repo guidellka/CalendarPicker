@@ -33,7 +33,8 @@ export default function HeaderControls(props) {
     minDate,
     headingLevel,
     monthYearHeaderWrapperStyle,
-    headerWrapperStyle
+    headerWrapperStyle,
+    localeDisplayYear
   } = props;
   const MONTHS = months || Utils.MONTHS; // English Month Array
   const monthName = MONTHS[currentMonth];
@@ -65,7 +66,7 @@ export default function HeaderControls(props) {
         </TouchableOpacity>
         <TouchableOpacity onPress={onPressYear}>
           <Text style={[styles.yearHeaderMainText, textStyle, yearTitleStyle]}>
-            { year+543 }
+            { year+localeDisplayYear }
           </Text>
         </TouchableOpacity>
       </View>
